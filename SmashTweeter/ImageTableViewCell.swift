@@ -10,12 +10,14 @@ import UIKit
 
 class ImageTableViewCell: UITableViewCell {
     @IBOutlet weak var tweetImage: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var imageURL: NSURL? { didSet { updateUI() } }
 
     func updateUI() {
         tweetImage?.image = nil
         if let url = imageURL {
+            self.activityIndicator.startAnimating()
             let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
             let queue = dispatch_get_global_queue(qos, 0)
             
@@ -29,6 +31,7 @@ class ImageTableViewCell: UITableViewCell {
                         } else {
                             self.tweetImage.image = nil
                         }
+                        self.activityIndicator.stopAnimating()
                     }
                 }
             }

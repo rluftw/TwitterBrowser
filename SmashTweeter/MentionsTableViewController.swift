@@ -55,6 +55,7 @@ class MentionsTableViewController: UITableViewController {
     
     private struct Storyboard {
         static let KeywordSegueIdentifier = "From Keyword"
+        static let ImageSegueIdentifier = "From Image"
         static let MentionsCellIdentifier = "Keyword Cell"
         static let ImageMentionsCellIdentifier = "Image Cell"
     }
@@ -203,6 +204,12 @@ class MentionsTableViewController: UITableViewController {
             if let tweetVC = segue.destinationViewController as? TweetTableViewController {
                 if let cell = sender as? UITableViewCell {
                     tweetVC.searchKeyword = cell.textLabel?.text
+                }
+            }
+        } else if segue.identifier == Storyboard.ImageSegueIdentifier {
+            if let imageVC = segue.destinationViewController as? ImageViewController {
+                if let cell = sender as? ImageTableViewCell {
+                    imageVC.imageURL = cell.imageURL
                 }
             }
         }
