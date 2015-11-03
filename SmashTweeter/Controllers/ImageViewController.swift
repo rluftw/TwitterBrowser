@@ -9,10 +9,14 @@
 import UIKit
 
 class ImageViewController: UIViewController, UIScrollViewDelegate  {
+    
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
             scrollView.delegate = self
-            scrollView.maximumZoomScale = 1.0
+            scrollView.maximumZoomScale = 5.0
             scrollView.minimumZoomScale = 0.3
         }
     }
@@ -34,6 +38,8 @@ class ImageViewController: UIViewController, UIScrollViewDelegate  {
             imageView.image = newValue
             imageView.sizeToFit()
             
+            activityIndicator.stopAnimating()
+            
             scrollView?.contentSize = imageView.frame.size
             autoScale()
         }
@@ -42,7 +48,10 @@ class ImageViewController: UIViewController, UIScrollViewDelegate  {
     func autoScale() {
         if let sv = scrollView {
             // Display zoomed to show as much of the image as possible but with no "white space"
-            sv.zoomScale = max(sv.bounds.size.height / image!.size.height, sv.bounds.size.width / image!.size.width)
+            sv.zoomScale = max(
+                sv.bounds.size.height / image!.size.height,     // height ratio
+                sv.bounds.size.width / image!.size.width        // width ratio
+            )
             sv.contentOffset = CGPoint(
                 x: (imageView.frame.size.width - sv.frame.size.width)/2,
                 y: (imageView.frame.size.height - sv.frame.size.height)/2
@@ -52,6 +61,8 @@ class ImageViewController: UIViewController, UIScrollViewDelegate  {
     
     private func fetchImage() {
         if let url = imageURL {
+            activityIndicator.startAnimating()
+            
             let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
             let queue = dispatch_get_global_queue(qos, 0)
             
