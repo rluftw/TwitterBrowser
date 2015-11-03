@@ -38,7 +38,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate  {
             imageView.image = newValue
             imageView.sizeToFit()
             
-            activityIndicator.stopAnimating()
+            activityIndicator?.stopAnimating()
             
             scrollView?.contentSize = imageView.frame.size
             autoScale()
@@ -47,21 +47,26 @@ class ImageViewController: UIViewController, UIScrollViewDelegate  {
     
     func autoScale() {
         if let sv = scrollView {
-            // Display zoomed to show as much of the image as possible but with no "white space"
-            sv.zoomScale = max(
-                sv.bounds.size.height / image!.size.height,     // height ratio
-                sv.bounds.size.width / image!.size.width        // width ratio
-            )
-            sv.contentOffset = CGPoint(
-                x: (imageView.frame.size.width - sv.frame.size.width)/2,
-                y: (imageView.frame.size.height - sv.frame.size.height)/2
-            )
+            if image != nil {
+                // Display zoomed to show as much of the image as possible but with no "white space"
+                print("sv.bounds.size.height: \(sv.bounds.size.height)  image!.size.height: \(image!.size.height)   = \(sv.bounds.size.height / image!.size.height)")
+                print("sv.bounds.size.width: \(sv.bounds.size.width)    image!.size.width: \(image!.size.width)     = \(sv.bounds.size.width / image!.size.width)")
+
+                sv.zoomScale = max(
+                    sv.bounds.size.height / image!.size.height,     // height ratio     i.e. 618/1024 = 0.603515625
+                    sv.bounds.size.width / image!.size.width        // width ratio      i.e. 375/576 = 0.651041666666667
+                )
+                sv.contentOffset = CGPoint(
+                    x: (imageView.frame.size.width - sv.frame.size.width)/2,
+                    y: (imageView.frame.size.height - sv.frame.size.height)/2
+                )
+            }
         }
     }
     
     private func fetchImage() {
         if let url = imageURL {
-            activityIndicator.startAnimating()
+            activityIndicator?.startAnimating()
             
             let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
             let queue = dispatch_get_global_queue(qos, 0)
@@ -81,6 +86,8 @@ class ImageViewController: UIViewController, UIScrollViewDelegate  {
         }
     }
     
+    // MARK: - Viewcontroller Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.addSubview(imageView)
@@ -92,6 +99,13 @@ class ImageViewController: UIViewController, UIScrollViewDelegate  {
             fetchImage()
         }
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        autoScale()
+    }
+    
+    // MARK: - ScrollView Delegate
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return imageView

@@ -41,14 +41,16 @@ class MentionsTableViewController: UITableViewController {
                 }
             }
             if let users = tweet?.userMentions {
+                var userItems = [MentionItem.Keyword("@\((tweet?.user.screenName)!)")]
                 if users.count > 0 {
-                    mentions.append(
-                        Mentions(
-                            title: "Users",
-                            data: users.map { MentionItem.Keyword($0.keyword) }
-                        )
-                    )
+                    userItems += users.map { MentionItem.Keyword($0.keyword) }
                 }
+                mentions.append(
+                    Mentions(
+                        title: "Users",
+                        data: userItems
+                    )
+                )
             }
         }
     }

@@ -16,7 +16,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <textField key="tableHeaderView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Twitter Search Query" textAlignment="natural" minimumFontSize="17" id="sfa-25-X7T">
-                            <rect key="frame" x="0.0" y="64" width="600" height="30"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -24,7 +24,7 @@
                         </textField>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Tweet" rowHeight="190" id="KI9-s8-ETy" customClass="TweetTableViewCell" customModule="SmashTweeter" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="122" width="600" height="190"/>
+                                <rect key="frame" x="0.0" y="58" width="600" height="190"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KI9-s8-ETy" id="NzJ-Bq-i5G">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="189.5"/>
@@ -141,7 +141,7 @@
                                 <animations/>
                             </activityIndicatorView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="puh-O8-7Li">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <animations/>
                             </scrollView>
                         </subviews>
@@ -156,6 +156,8 @@
                             <constraint firstItem="puh-O8-7Li" firstAttribute="top" secondItem="nDa-Zs-eH6" secondAttribute="top" id="v4H-hg-Vxe"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="activityIndicator" destination="itb-vz-jvm" id="g7L-gc-7Y2"/>
                         <outlet property="scrollView" destination="puh-O8-7Li" id="jVH-G7-uMp"/>
@@ -176,7 +178,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Keyword Cell" id="ZgB-HD-csn">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZgB-HD-csn" id="fwl-Ts-JfT">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -189,7 +191,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Image Cell" rowHeight="203" id="MbP-u2-ai3" customClass="ImageTableViewCell" customModule="SmashTweeter" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="136" width="600" height="203"/>
+                                <rect key="frame" x="0.0" y="72" width="600" height="203"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MbP-u2-ai3" id="K7N-io-D9V">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="202.5"/>
@@ -338,6 +340,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="upW-jw-fhj"/>
+        <segue reference="Qs3-uh-Wkt"/>
     </inferredMetricsTieBreakers>
 </document>
